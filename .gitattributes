@@ -1,0 +1,4 @@
+# Shell scripts and server configs run on Linux: always keep Unix line endings
+*.sh text eol=lf
+server/** text eol=lf
+public/.htaccess text eol=lf
