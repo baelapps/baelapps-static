@@ -6,7 +6,7 @@
 export const site = {
   name: 'BaelApps',
   /** Production origin, used for canonical URLs and Open Graph tags. Update if the domain differs. */
-  url: 'https://baelapps.com',
+  url: 'https://www.baelapps.com',
   tagline: 'Thoughtfully built software for real-world businesses and everyday life.',
   footerTagline: 'Thoughtfully built software for real-world problems.',
   /** Default social share image (1200×630), relative to /public. */

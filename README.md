@@ -84,8 +84,8 @@ security headers and long-term caching for hashed assets.
 ### GoDaddy web hosting (cPanel)
 
 Upload the **contents** of `dist/` (including the hidden `.htaccess`) into `public_html/`.
-`.htaccess` serves clean URLs (`/about`), the 404 page, forces HTTPS and redirects `www` to
-`baelapps.com`.
+`.htaccess` serves clean URLs (`/about`), the 404 page, forces HTTPS and redirects `baelapps.com`
+to `www.baelapps.com`.
 
 ### Azure App Service / any static host
 
