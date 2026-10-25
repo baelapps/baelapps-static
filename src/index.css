@@ -1,0 +1,341 @@
+@import 'tailwindcss';
+
+/*
+ * Theme system
+ * ------------
+ * Components use semantic colour names (paper, ink, accent, hl, …). Their values come from
+ * CSS variables, so a section wrapped in [data-theme='…'] takes on that product's identity.
+ * :root holds the BaelApps (parent brand) theme.
+ *
+ *   paper / canvas   page and alternate section backgrounds
+ *   ink              primary text and dark surfaces
+ *   accent           brand accent (indigo for BaelApps, plum for Boutiquo360, …)
+ *   hl               highlight colour, used sparingly (champagne gold, …)
+ *   hl-deep          highlight dark enough for small text on paper (WCAG AA)
+ */
+
+@theme {
+  --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Instrument Serif', 'Times New Roman', Georgia, serif;
+  --font-boutique: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+}
+
+@theme inline {
+  --font-display: var(--display-face);
+
+  --color-paper: var(--paper);
+  --color-canvas: var(--canvas);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-accent-light: var(--accent-light);
+  --color-accent-soft: var(--accent-soft);
+
+  --color-hl: var(--hl);
+  --color-hl-deep: var(--hl-deep);
+  --color-hl-bright: var(--hl-bright);
+  --color-hl-light: var(--hl-light);
+  --color-hl-soft: var(--hl-soft);
+
+  --shadow-card: 0 1px 2px rgb(18 17 21 / 0.04), 0 8px 24px -12px rgb(18 17 21 / 0.12);
+  --shadow-lift:
+    0 2px 4px rgb(18 17 21 / 0.05), 0 24px 48px -20px color-mix(in oklab, var(--accent-deep) 40%, transparent);
+  --shadow-mockup:
+    0 2px 6px rgb(18 17 21 / 0.06), 0 40px 80px -32px color-mix(in oklab, var(--accent-deep) 55%, transparent);
+}
+
+/* BaelApps — warm ivory, charcoal, deep indigo, a little champagne */
+:root,
+[data-theme='baelapps'] {
+  --display-face: var(--font-sans);
+  /* Geist sets larger and needs tighter tracking than Cormorant */
+  --display-scale: 0.86;
+  --display-tracking: -0.035em;
+  --display-weight: 600;
+  --paper: #f7f6f2;
+  --canvas: #efede7;
+  --ink: #131216;
+  --ink-soft: #25232b;
+  --ink-muted: #5c5963;
+  --line: #e2dfd7;
+  --line-strong: #cfcac0;
+
+  --accent: #3f3c96;
+  --accent-deep: #18173a;
+  --accent-light: #9a97e0;
+  --accent-soft: #e8e7f6;
+
+  --hl: #b0915a;
+  --hl-deep: #7a5f2c;
+  --hl-bright: #c8aa70;
+  --hl-light: #dcc697;
+  --hl-soft: #f2ead8;
+
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23131216' fill-opacity='0.09'/%3E%3C/svg%3E");
+  --pattern-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23ffffff' fill-opacity='0.08'/%3E%3C/svg%3E");
+}
+
+/* Boutiquo360 — Indian luxury boutique: ivory, plum, champagne gold, serif display */
+[data-theme='boutiquo360'] {
+  --display-face: var(--font-boutique);
+  --display-scale: 1;
+  --display-tracking: -0.01em;
+  --display-weight: 600;
+  --paper: #fbf8f2;
+  --canvas: #f4ede1;
+  --ink: #1b161d;
+  --ink-soft: #2a2330;
+  --ink-muted: #5c5462;
+  --line: #e4d9c6;
+  --line-strong: #e8dcc8;
+
+  --accent: #5a2a52;
+  --accent-deep: #2f1530;
+  --accent-light: #8a5a80;
+  --accent-soft: #efe3ec;
+
+  --hl: #b38a35;
+  --hl-deep: #85621f;
+  --hl-bright: #c9a24d;
+  --hl-light: #e2c98d;
+  --hl-soft: #f3e6c4;
+
+  /* "Jaal" lattice */
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23b38a35' stroke-width='0.8' stroke-opacity='0.22'%3E%3Cpath d='M28 4c6 8 6 16 0 24-6-8-6-16 0-24zM28 28c6 8 6 16 0 24-6-8-6-16 0-24zM4 28c8-6 16-6 24 0-8 6-16 6-24 0zM28 28c8-6 16-6 24 0-8 6-16 6-24 0z'/%3E%3Ccircle cx='28' cy='28' r='1.6' fill='%23b38a35' fill-opacity='0.25' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
+  --pattern-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23e2c98d' stroke-width='0.8' stroke-opacity='0.14'%3E%3Cpath d='M28 4c6 8 6 16 0 24-6-8-6-16 0-24zM28 28c6 8 6 16 0 24-6-8-6-16 0-24zM4 28c8-6 16-6 24 0-8 6-16 6-24 0zM28 28c8-6 16-6 24 0-8 6-16 6-24 0z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* TrackBuddi — clear, friendly technology: cool white, royal blue (brand #1E40AF), school-bus amber */
+[data-theme='trackbuddi'] {
+  --display-face: var(--font-sans);
+  --accent-style: normal;
+  --accent-text-a: #1e40af;
+  --accent-text-b: #3b6ef5;
+  --display-scale: 0.86;
+  --display-tracking: -0.035em;
+  --display-weight: 650;
+  --paper: #f7f8fb;
+  --canvas: #edf0f7;
+  --ink: #0f172a;
+  --ink-soft: #1e293b;
+  --ink-muted: #526077;
+  --line: #dfe4ee;
+  --line-strong: #cbd3e1;
+
+  --accent: #1e40af;
+  --accent-deep: #13203f;
+  --accent-light: #8fb0f8;
+  --accent-soft: #e3eafc;
+
+  --hl: #f2b01e;
+  --hl-deep: #8a5a00;
+  --hl-bright: #ffc533;
+  --hl-light: #ffd978;
+  --hl-soft: #fff3d1;
+
+  /* Fine map-like grid */
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M32 0H0v32' fill='none' stroke='%231e40af' stroke-opacity='0.07'/%3E%3C/svg%3E");
+  --pattern-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M32 0H0v32' fill='none' stroke='%23ffffff' stroke-opacity='0.06'/%3E%3C/svg%3E");
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    font-variant-numeric: lining-nums;
+    text-rendering: optimizeLegibility;
+  }
+
+  [data-theme] {
+    @apply bg-paper text-ink;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  ::selection {
+    background: var(--hl-soft);
+    color: var(--ink);
+  }
+}
+
+@layer components {
+  /* Small uppercase label above section headings */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[0.72rem] font-semibold tracking-[0.22em] text-hl-deep uppercase;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply h-px w-8 bg-current opacity-70;
+  }
+
+  /* Theme texture (dots for BaelApps, jaal lattice for Boutiquo360, grid for TrackBuddi) */
+  .bg-pattern {
+    background-image: var(--pattern);
+  }
+  .bg-pattern-light {
+    background-image: var(--pattern-light);
+  }
+
+  /* Fine woven-fabric grain (Boutiquo360) */
+  .bg-weave {
+    background-image:
+      repeating-linear-gradient(45deg, rgb(179 138 53 / 0.035) 0 1px, transparent 1px 7px),
+      repeating-linear-gradient(-45deg, rgb(179 138 53 / 0.035) 0 1px, transparent 1px 7px);
+  }
+
+  /* Headline type that adapts to the active theme's display face */
+  .heading-display {
+    font-family: var(--display-face);
+    font-weight: var(--display-weight);
+    letter-spacing: var(--display-tracking);
+  }
+
+  .text-hl-gradient {
+    font-style: var(--accent-style, italic);
+    background: linear-gradient(
+      100deg,
+      var(--accent-text-a, var(--hl-deep)) 0%,
+      var(--accent-text-b, var(--hl)) 50%,
+      var(--accent-text-a, var(--hl-deep)) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* Theme-specific decoration */
+.ornament-lotus,
+.mandala {
+  display: none;
+}
+[data-theme='boutiquo360'] .ornament-lotus,
+[data-theme='boutiquo360'] .mandala {
+  display: block;
+}
+[data-theme='boutiquo360'] .ornament-rule {
+  display: none;
+}
+
+/* Scroll reveal — content is visible by default; JS opts it into the animation */
+.reveal {
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal[data-reveal='hidden'] {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+.animate-float-soft {
+  animation: float-soft 7s ease-in-out infinite;
+}
+
+@keyframes draw-line {
+  from {
+    stroke-dashoffset: 600;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.animate-draw {
+  stroke-dasharray: 600;
+  animation: draw-line 2.2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+.animate-bar {
+  transform-origin: bottom;
+  animation: bar-grow 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-orbit {
+  animation: orbit 90s linear infinite;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal[data-reveal='hidden'] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Cormorant defaults to old-style figures ("36o"); use lining numerals everywhere */
+.font-display,
+.font-display *,
+.font-boutique,
+.font-boutique * {
+  font-variant-numeric: lining-nums;
+}
