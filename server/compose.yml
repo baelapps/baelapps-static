@@ -1,0 +1,17 @@
+# The BaelApps website container. Lives in /srv/baelapps on the VPS, separate from the
+# Boutiquo360 stack, and joins that stack's `bq` network so its edge proxy can reach it.
+#
+#   cd /srv/baelapps && docker compose up -d
+services:
+  web:
+    image: caddy:2
+    container_name: baelapps-web
+    restart: unless-stopped
+    volumes:
+      - /srv/baelapps/Caddyfile:/etc/caddy/Caddyfile:ro
+      - /srv/baelapps:/srv/baelapps:ro
+    networks: [bq]
+
+networks:
+  bq:
+    external: true

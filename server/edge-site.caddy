@@ -1,0 +1,12 @@
+# baelapps.com: the BaelApps company website, direct (no Cloudflare). Caddy gets Let's Encrypt
+# certificates by itself. Installed as /srv/bq/caddy/sites/baelapps.caddy on the VPS and served by
+# the `baelapps-web` container (see compose.yml in the BaelApps website repo).
+baelapps.com {
+	redir https://www.baelapps.com{uri} permanent
+}
+
+www.baelapps.com {
+	encode zstd gzip
+	header Strict-Transport-Security "max-age=31536000"
+	reverse_proxy baelapps-web:8080
+}

@@ -72,6 +72,25 @@ It then appears in the navigation, footer, home page, products page and build ou
 
 ## Deployment
 
+### Production: Hostinger VPS (current)
+
+The live site runs on the VPS that also hosts the Boutiquo360 app, without touching it:
+
+- `baelapps-web`, a small Caddy container (`server/Caddyfile`, `server/compose.yml`), serves the
+  files in `/srv/baelapps/current` on the internal `bq` Docker network.
+- The shared edge proxy `bq-caddy` routes `www.baelapps.com` to it, redirects `baelapps.com` to
+  www, and gets HTTPS certificates automatically (`server/edge-site.caddy`, installed as
+  `/srv/bq/caddy/sites/baelapps.caddy`).
+- DNS (at GoDaddy): `A` records for `@` and `www` pointing to the VPS IP.
+
+```bash
+npm run deploy             # build and publish (needs the SSH key ~/.ssh/baelapps_vps)
+npm run deploy -- --setup  # also re-install the server config after changing server/
+```
+
+Each deploy is a new release folder switched in atomically; the last 5 are kept, so rolling back
+is `ln -sfn releases/<older> /srv/baelapps/current` on the server.
+
 ### Azure Static Web Apps
 
 - **App location:** `/`
